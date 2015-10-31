@@ -35,7 +35,7 @@ config.codeCoverage = {
     statements: 90,
     functions: 90,
     branches: 90,
-    lines: 90
+    lines: 90,
   },
 };
 
@@ -48,7 +48,6 @@ config.mocha = {
   files: config.tests.all,
 
   get opts() {
-    console.log(config.mocha.files);
     return config.mocha.args.concat([config.mocha.files.replace(config.src, config.dest)]);
   },
 
@@ -62,7 +61,7 @@ config.mocha = {
 config.babel = {
   opts: {
     babelrc: basePath('.babelrc'),
-  }
+  },
 };
 
 module.exports = config;

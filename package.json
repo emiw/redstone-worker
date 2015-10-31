@@ -41,6 +41,7 @@
     "gulp-eslint": "1",
     "gulp-sourcemaps": "1",
     "gulp-util": "3",
+    "istanbul": "^0.4.0",
     "load-deps": "1",
     "mocha": "2",
     "portfinder": "^0.4.0",
