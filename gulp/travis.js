@@ -12,14 +12,14 @@ const coverageUploadCommand = `cat ${lcov} | ${coveralls} -v; echo "Coverage Upl
 
 const uploadCoverage = () => {
   // Only upload coverage once
-  if ((process.env.TRAVIS_JOB_NUMBER || '0.1').split('.').pop() !== '1') return;
+  if ((process.env.TRAVIS_JOB_NUMBER || '0.1').split('.').pop() !== '1') return Promise.resolve();
 
-  return new Promise((good, bad) => {
+  return new Promise((done) => {
     exec(coverageUploadCommand, (err, stdout, stderr) => {
       console.log(stdout);
       console.error(stderr);
       console.error(err);
-      good();
+      done();
     });
   });
 };
