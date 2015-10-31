@@ -25,4 +25,13 @@ describe('app', () => {
       await expect(portAvailable(port)).to.eventually.equal(false);
     });
   });
+
+  describe('#stop', () => {
+    it('should stop the server', async () => {
+      const port = await getPort();
+      await app.start(port);
+      await app.stop();
+      await expect(portAvailable(port)).to.eventually.equal(true);
+    });
+  });
 });
