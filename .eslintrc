@@ -4,9 +4,14 @@
     "no-console": 0,
     "spaced-comment": 0,
     "no-param-reassign": 0,
+    "id-length": 0,
     "one-var": [2,{
       "uninitialized": "always",
       "initialized": "never"
-    }]
+    }],
+    "new-cap": [2, {
+      "newIsCap": true,
+      "capIsNew": false,
+    }],
   }
 }
