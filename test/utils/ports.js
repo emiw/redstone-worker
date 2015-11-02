@@ -5,7 +5,7 @@ module.exports = {
   getPort: Promise.promisify(getPort),
 
   portAvailable: function portAvailable(port) {
-    return new Promise((good, bad) => {
+    return new Promise(function promiseWrapper(good, bad) {
       const tester = net.createServer();
       tester
         .once('error', function onError(err) {
