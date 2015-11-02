@@ -6,14 +6,16 @@ const { resolve } = require('path');
 const config = require('./lib/config');
 const test = require('./test');
 
-const node_modules = resolve(config.basePath, 'node_modules', '.bin');
+const node_modules = resolve(config.basePath, 'node_modules', '.bin'); // eslint-disable-line
 const istanbul = resolve(node_modules, 'istanbul');
 const _mocha = resolve(node_modules, '_mocha');
 
 const changeMochaOptions = () => {
-  let originalMochaConfig = _.cloneDeep(config.mocha);
+  const istanbulArgs = ['cover', ...config.istanbul.args, _mocha, '--'];
+  const originalMochaConfig = _.cloneDeep(config.mocha);
   config.mocha.pathToMocha = istanbul;
-  config.mocha.args.unshift('cover', _mocha, '--');
+  config.mocha.args.unshift( ...istanbulArgs);
+  console.log(config.mocha.args);
 
   return () => config.mocha = originalMochaConfig;
 };
@@ -21,7 +23,7 @@ const changeMochaOptions = () => {
 const checkCoverage = () => {
   return new Promise((good, bad) => {
     const istanbulArgs = _.flatten(Object.keys(config.codeCoverage.thresholds).map((key) => {
-      return [`--${key}`, config.codeCoverage.thresholds[key]]
+      return [`--${key}`, config.codeCoverage.thresholds[key]];
     }));
 
     spawn(istanbul, ['check-coverage', ...istanbulArgs], { cwd: config.basePath, stdio: 'inherit' })

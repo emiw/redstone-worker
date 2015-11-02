@@ -1,5 +1,5 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const { resolve, join } = require('path');
+const { resolve, join, basename } = require('path');
 
 const config = {};
 
@@ -56,6 +56,14 @@ config.mocha = {
   env: Object.assign({}, process.env, {
     NODE_ENV: 'test',
   }),
+};
+
+config.istanbul = {
+  // Because of child_process.spawn nonsense, we have to specify the option name and value as seperate strings.
+  args: [
+    // These are only passed to `istanbul cover`. `cover _mocha --` is automatically inseted.
+    '-x', '**/' + basename(config.tests.all),
+  ],
 };
 
 config.babel = {
