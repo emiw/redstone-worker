@@ -7,7 +7,7 @@ const socketio = require('socket.io');
 let io, server;
 let started = false;
 module.exports = {
-  start: async (port) => {
+  async start(port) {
     if (started) throw new Error('Server already started!');
     server = http.createServer();
     io = socketio(server);
@@ -16,7 +16,7 @@ module.exports = {
     return { io, server };
   },
 
-  stop: async () => {
+  async stop() {
     if (!started) throw new Error('Server isn\'t started!');
     await Promise.promisify(::server.close)();
     started = false;
