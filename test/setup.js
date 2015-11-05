@@ -4,7 +4,7 @@
 /* eslint-env mocha */
 var chai = require('chai');
 
-require('babel-polyfill');
+require('babel/polyfill');
 require('source-map-support/register');
 
 global.Promise = global.Bluebird = require('bluebird');
