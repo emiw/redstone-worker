@@ -13,6 +13,10 @@ describe('router', () => {
     router = Router();
   });
 
+  it('#is should === Router', () => {
+    expect(router.is).to.equal(Router);
+  });
+
   describe('#run', () => {
     it('should route to the routes setup with #route', (cb) => {
       router.route('foo', () => cb());

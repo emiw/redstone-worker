@@ -9,6 +9,7 @@ const nextEventLoopTick = () => new Promise(good => setImmediate(good));
 function Router() {
   const routes = new Map();
   return {
+    is: Router,
     route(path, handler) {
       path = filterPath(path);
       routes.set(path, handler);
