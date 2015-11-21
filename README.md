@@ -12,9 +12,13 @@
 [![Dependency Status][deps-badge]](deps-link)
 [![devDependency Status][devDeps-badge]][devDeps-link]
 
+[//]: # "You need to update these for your new repo"
+
+[//]: # "These two use the url-encoded package name"
 [version-badge]: https://badge.fury.io/js/%40emiw%2Fboilerplate.svg        "npm version"
 [version-link]: http://badge.fury.io/js/%40emiw%2Fboilerplate              "npm version"
 
+[//]: # "The rest just use the repo slug, same as github"
 [build-badge]: https://travis-ci.org/emiw/boilerplate.svg                  "Travis CI Build Status"
 [build-link]: https://travis-ci.org/emiw/boilerplate                       "Travis CI Build Status"
 
