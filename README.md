@@ -3,12 +3,28 @@
 
 ### A boilerplate module for EMIW
 
+[//]: # "ProTip(tm): This is how you make a comment in markdown. Anything between the quotes is ignored."
+
 ---
-[![npm version](https://badge.fury.io/js/%40emiw%2Fboilerplate.svg)](http://badge.fury.io/js/%40emiw%2Fboilerplate)
-[![Build Status](https://travis-ci.org/emiw/boilerplate.svg)](https://travis-ci.org/emiw/boilerplate)
-[![Coverage Status](https://coveralls.io/repos/emiw/boilerplate/badge.svg?branch=master&service=github)](https://coveralls.io/github/emiw/boilerplate?branch=master)
-[![Dependency Status](https://david-dm.org/emiw/boilerplate.svg)](https://david-dm.org/emiw/boilerplate)
-[![devDependency Status](https://david-dm.org/emiw/boilerplate/dev-status.svg)](https://david-dm.org/emiw/boilerplate#info=devDependencies)
+[![Version][version-badge]][version-link] [![Build Status][build-badge]][build-link] [![Coverage Status][coverage-badge]][coverage-link] [![Dependency Status][deps-badge]](deps-link) [![devDependency Status][devDeps-badge]][devDeps-link]
+
+[version-badge]: https://badge.fury.io/js/%40emiw%2Fboilerplate.svg        "npm version"
+[version-link]: http://badge.fury.io/js/%40emiw%2Fboilerplate              "npm version"
+
+[build-badge]: https://travis-ci.org/emiw/boilerplate.svg                  "Travis CI Build Status"
+[build-link]: https://travis-ci.org/emiw/boilerplate                       "Travis CI Build Status"
+
+[deps-badge]: https://david-dm.org/emiw/boilerplate.svg                    "Dependency Status"
+[deps-link]: https://david-dm.org/emiw/boilerplate                         "Dependency Status"
+
+[devDeps-badge]: https://david-dm.org/emiw/boilerplate/dev-status.svg      "devDependency Status"
+[devDeps-link]: https://david-dm.org/emiw/boilerplate#info=devDependencies "devDependency Status"
+
+[//]: # "This comes last, as it's really long"
+
+[coverage-badge]: https://coveralls.io/repos/emiw/boilerplate/badge.svg?branch=master&service=github "Code Coverage"
+[coverage-link]: https://coveralls.io/github/emiw/boilerplate?branch=master                          "Code Coverage"
+
 ---
 
 ## Why?
@@ -22,18 +38,19 @@ tellus non justo vehicula efficitur.
 
 ## Installation
 
-    npm i -S @emiw/boilerplate
-
+```bash
+npm i -S @emiw/boilerplate
+```
 
 ---
 
 ## Usage
 
-   var boilerplate = require('@emiw/boilerplate');
+```javascript
+var boilerplate = require('@emiw/boilerplate');
 
-   // TODO: Add usage instructions
-
-
+// TODO: Add usage instructions
+```
 
 ---
 
