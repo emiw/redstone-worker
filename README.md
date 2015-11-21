@@ -6,7 +6,11 @@
 [//]: # "ProTip(tm): This is how you make a comment in markdown. Anything between the quotes is ignored."
 
 ---
-[![Version][version-badge]][version-link] [![Build Status][build-badge]][build-link] [![Coverage Status][coverage-badge]][coverage-link] [![Dependency Status][deps-badge]](deps-link) [![devDependency Status][devDeps-badge]][devDeps-link]
+[![Version][version-badge]][version-link]
+[![Build Status][build-badge]][build-link]
+[![Coverage Status][coverage-badge]][coverage-link]
+[![Dependency Status][deps-badge]](deps-link)
+[![devDependency Status][devDeps-badge]][devDeps-link]
 
 [version-badge]: https://badge.fury.io/js/%40emiw%2Fboilerplate.svg        "npm version"
 [version-link]: http://badge.fury.io/js/%40emiw%2Fboilerplate              "npm version"
