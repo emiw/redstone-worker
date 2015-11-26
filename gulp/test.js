@@ -4,7 +4,6 @@ const { spawn } = require('child_process');
 const { resolve } = require('path');
 const compile = require('./lib/compile');
 const config = require('./lib/config');
-
 const runMocha = (type) => {
   return new Promise((good, bad) => {
     config.mocha.files = config.tests[type];

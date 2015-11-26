@@ -13,9 +13,9 @@ const _mocha = resolve(node_modules, '_mocha');
 const changeMochaOptions = () => {
   const istanbulArgs = ['cover', ...config.istanbul.args, _mocha, '--'];
   const originalMochaConfig = _.cloneDeep(config.mocha);
+
   config.mocha.pathToMocha = istanbul;
   config.mocha.args.unshift( ...istanbulArgs);
-  console.log(config.mocha.args);
 
   return () => config.mocha = originalMochaConfig;
 };
