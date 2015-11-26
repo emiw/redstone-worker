@@ -259,3 +259,6 @@ tramp
 build
 dist
 
+
+### ESLint ###
+.eslintcache

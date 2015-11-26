@@ -14,12 +14,12 @@ const uploadCoverage = () => {
   // Only upload coverage once
   if ((process.env.TRAVIS_JOB_NUMBER || '0.1').split('.').pop() !== '1') return Promise.resolve();
 
-  return new Promise((done) => {
+  return new Promise((good, /* bad */) => {
     exec(coverageUploadCommand, (err, stdout, stderr) => {
       console.log(stdout);
       console.error(stderr);
       console.error(err);
-      done();
+      good();
     });
   });
 };

@@ -4,7 +4,8 @@ const socketio = require('socket.io');
 
 // FIXME: Theoretically, since these are async functions, you could call stop,
 // then start, and cause problems.
-let io, server;
+let io
+let server;
 let started = false;
 module.exports = {
   async start(port) {
