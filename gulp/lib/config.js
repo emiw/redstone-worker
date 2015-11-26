@@ -6,7 +6,7 @@ const config = {};
 config.basePath = resolve(__dirname, '..', '..');
 const basePath = (...paths) => resolve(config.basePath, ...paths);
 
-config.src = basePath('src');
+config.src = basePath('app');
 config.dest = basePath('build');
 config.spikes = basePath('spikes');
 

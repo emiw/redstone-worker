@@ -4,10 +4,10 @@
 const rewire = require('rewire');
 const { getPort, portAvailable } = require('../test/utils/ports'); // FIXME: App-module-path
 
-describe('app', () => {
+describe('server', () => {
   let app;
   beforeEach(() => {
-    app = rewire('./app');
+    app = rewire('./server');
   });
 
   afterEach(async () => {
