@@ -1,5 +1,6 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
 const { resolve, join, basename } = require('path');
+const { resolve, join } = require('path');
 
 const config = {};
 
@@ -22,7 +23,7 @@ config.clean = {
 };
 
 config.tests = {
-  // The rest is auto generated later, for maximum DRYness, using the path `$src/**/*.test.$type.js`
+  // The rest is auto generated later, for maximum DRYness, using the path `$src/**/*.test.${type}.js`
   types: ['unit', 'int', 'all'],
 };
 config.tests.types.forEach(type => config.tests[type] = join(config.src, '**', `*.test.${type}.js`));
