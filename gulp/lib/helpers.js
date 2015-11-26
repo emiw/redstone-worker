@@ -33,5 +33,5 @@ module.exports.streamToPromise = (stream) => {
       isDone = true;
       good(stream);
     });
-  })
+  });
 };

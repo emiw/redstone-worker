@@ -1,7 +1,12 @@
+// This file allows comments
 {
+  "parser": "babel-eslint",
   "extends": "airbnb/base",
+  "ecmaFeatures": {
+    "restParams": true // https://github.com/airbnb/javascript/pull/592
+  },
   "rules": {
     "no-console": 0,
-    "no-param-reassign": 0,
+    "no-param-reassign": 0
   }
 }
