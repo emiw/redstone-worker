@@ -1,6 +1,5 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
 const { resolve, join, basename } = require('path');
-const { resolve, join } = require('path');
 
 const config = {};
 
