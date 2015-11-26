@@ -22,7 +22,7 @@ config.clean = {
 };
 
 config.tests = {
-  // The rest is auto generated later, for maximum DRYness, using the path `$src/**/*.test.$type.js`
+  // The rest is auto generated later, for maximum DRYness, using the path `$src/**/*.test.${type}.js`
   types: ['unit', 'int', 'all'],
 };
 config.tests.types.forEach(type => config.tests[type] = join(config.src, '**', `*.test.${type}.js`));
