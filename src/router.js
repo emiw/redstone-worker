@@ -6,10 +6,9 @@ function filterPath(path) {
 
 const nextEventLoopTick = () => new Promise(good => setImmediate(good));
 
-function Router() {
+function createRouter() {
   const routes = new Map();
   return {
-    is: Router,
     route(path, handler) {
       path = filterPath(path);
       routes.set(path, handler);
@@ -22,8 +21,8 @@ function Router() {
       if (!handler) throw new Error('Route not found!');
       // This prevents the returned promise from resolving to another promise
       return await Promise.resolve(handler(...args));
-    }
-  }
+    },
+  };
 }
 
-module.exports = Router;
+module.exports = createRouter;

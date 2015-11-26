@@ -4,17 +4,11 @@
 const rewire = require('rewire');
 
 describe('router', () => {
-  let Router, router;
-  before(() => {
-    Router = rewire('./router');
-  });
+  const createRouter = rewire('./router');
+  let router;
 
   beforeEach(() => {
-    router = Router();
-  });
-
-  it('#is should === Router', () => {
-    expect(router.is).to.equal(Router);
+    router = createRouter();
   });
 
   describe('#run', () => {
@@ -71,7 +65,7 @@ describe('router', () => {
         { 'a': 1, 'b': 2, 'c': 3 },
         1,
         Promise.resolve('foo'),
-        new Error('foo')
+        new Error('foo'),
       ];
 
       const promises = [];
