@@ -2,13 +2,10 @@
 /* global expect:false, assert:false */
 /* eslint-env mocha */
 const rewire = require('rewire');
-const { getPort, portAvailable } = require('../test/utils/ports'); // FIXME: App-module-path
+import { getPort, portAvailable } from '../test/utils/ports'; // FIXME: App-module-path
 
 describe('server', () => {
-  let app;
-  beforeEach(() => {
-    app = rewire('./server');
-  });
+  const app = rewire('./server');
 
   afterEach(async () => {
     try {

@@ -1,36 +1,34 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const { resolve, join, basename } = require('path');
+import { resolve, join, basename } from 'path';
 
-const config = {};
+export const basePath = resolve(__dirname, '..', '..');
+const pathInBase = (...paths) => resolve(basePath, ...paths);
 
-config.basePath = resolve(__dirname, '..', '..');
-const basePath = (...paths) => resolve(config.basePath, ...paths);
+export const src = pathInBase('app');
+export const dest = pathInBase('build');
+export const spikes = pathInBase('spikes');
 
-config.src = basePath('app');
-config.dest = basePath('build');
-config.spikes = basePath('spikes');
+export const srcJs = [join(src, '**', '*.js')];
+export const srcOther = [join(src, '**'), '!**/*.js'];
 
-config.srcJs = [join(config.src, '**', '*.js')];
-config.srcOther = [join(config.src, '**'), '!**/*.js'];
-
-config.lint = {
-  other: [resolve(__dirname, '..'), join(config.spikes, '**', '*.js')],
+export const lint = {
+  other: [resolve(__dirname, '..'), join(spikes, '**', '*.js')],
 };
 
-config.clean = {
-  other: [basePath('coverage')],
+export const clean = {
+  other: [pathInBase('coverage')],
 };
 
-config.tests = {
+export const tests = {
   // The rest is auto generated later, for maximum DRYness, using the path `$src/**/*.test.${type}.js`
   types: ['unit', 'int', 'all'],
 };
-config.tests.types.forEach(type => config.tests[type] = join(config.src, '**', `*.test.${type}.js`));
+tests.types.forEach(type => tests[type] = join(src, '**', `*.test.${type}.js`));
 // We have to override this here, because we don't want the path to be `$src/**/*.test.all.js`
-config.tests.all = join(config.src, '**', '*.test.*.js');
+tests.all = join(src, '**', '*.test.*.js');
 
 
-config.codeCoverage = {
+export const codeCoverage = {
   thresholds: {
     statements: 90,
     functions: 90,
@@ -39,16 +37,16 @@ config.codeCoverage = {
   },
 };
 
-config.mocha = {
+export const mocha = {
   // Because of child_process.spawn nonsense, we have to specify the option name and value as seperate strings.
   args: [
-    '--require', basePath('test', 'setup.js'),
+    '--require', pathInBase('test', 'setup.js'),
   ],
 
-  files: config.tests.all,
+  files: tests.all,
 
   get opts() {
-    return config.mocha.args.concat([config.mocha.files.replace(config.src, config.dest)]);
+    return mocha.args.concat([mocha.files.replace(src, dest)]);
   },
 
   pathToMocha: resolve(__dirname, '..', '..', 'node_modules', '.bin', 'mocha'),
@@ -58,18 +56,16 @@ config.mocha = {
   }),
 };
 
-config.istanbul = {
+export const istanbul = {
   // Because of child_process.spawn nonsense, we have to specify the option name and value as seperate strings.
   args: [
     // These are only passed to `istanbul cover`. `cover _mocha --` is automatically inseted.
-    '-x', '**/' + basename(config.tests.all),
+    '-x', '**/' + basename(tests.all),
   ],
 };
 
-config.babel = {
+export const babel = {
   opts: {
-    babelrc: basePath('.babelrc'),
+    babelrc: pathInBase('.babelrc'),
   },
 };
-
-module.exports = config;

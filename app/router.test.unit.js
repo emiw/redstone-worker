@@ -1,10 +1,10 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
 /* global expect:false, assert:false */
 /* eslint-env mocha */
-const rewire = require('rewire');
+import rewire from 'rewire';
 
 describe('router', () => {
-  const createRouter = rewire('./router');
+  const { createRouter } = rewire('./router');
   let router;
 
   beforeEach(() => {

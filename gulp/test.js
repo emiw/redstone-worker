@@ -1,9 +1,11 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const gulp = require('gulp');
-const { spawn } = require('child_process');
-const { resolve } = require('path');
-const compile = require('./lib/compile');
-const config = require('./lib/config');
+import gulp from 'gulp';
+import compile from './lib/compile';
+import { spawn } from 'child_process';
+import { resolve } from 'path';
+import * as config from './lib/config';
+import { negate } from './lib/helpers';
+
 const runMocha = (type) => {
   return new Promise((good, bad) => {
     config.mocha.files = config.tests[type];
@@ -17,7 +19,7 @@ const runMocha = (type) => {
   });
 };
 
-const test = (type = 'unit') => {
+export default function test(type = 'unit') {
   return compile(config.srcJs, config.dest).promise
     .then((arg) => runMocha(type, arg));
 };
@@ -27,5 +29,3 @@ const defineTestTask = (name, type) => gulp.task(name, testTaskDeps, () => test(
 
 config.tests.types.map(type => defineTestTask(`test:${type}`, type));
 defineTestTask('test', 'all');
-
-module.exports = test;

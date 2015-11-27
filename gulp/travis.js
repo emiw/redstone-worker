@@ -1,16 +1,15 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const gulp = require('gulp');
-const { exec } = require('child_process');
-const { resolve } = require('path');
-const { basePath } = require('./lib/config');
-const testCov = require('./test-cov');
-
+import gulp from 'gulp';
+import { exec } from 'child_process';
+import { resolve } from 'path';
+import { basePath } from './lib/config';
+import testCov from './test-cov';
 
 const lcov = resolve(basePath, 'coverage', 'lcov.info');
 const coveralls = resolve(basePath, 'node_modules', 'coveralls', 'bin', 'coveralls.js');
 const coverageUploadCommand = `cat ${lcov} | ${coveralls} -v; echo "Coverage Uploaded"`;
 
-const uploadCoverage = () => {
+export function uploadCoverage() {
   // Only upload coverage once
   if ((process.env.TRAVIS_JOB_NUMBER || '0.1').split('.').pop() !== '1') return Promise.resolve();
 
@@ -24,12 +23,9 @@ const uploadCoverage = () => {
   });
 };
 
-const travis = () => {
+export default function travis() {
   return testCov(process.env.TEST_TYPES || 'all')
     .finally(uploadCoverage);
 };
 
 gulp.task('travis', ['lint'], travis);
-
-module.exports = travis;
-module.exports.uploadCoverage = uploadCoverage;

@@ -1,10 +1,10 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const gulp = require('gulp');
-const { streamToPromise } = require('./helpers');
-const config = require('./config');
-const { changed, sourcemaps, babel } = require('./plugins');
+import gulp from 'gulp';
+import { streamToPromise } from './helpers';
+import * as config from './config';
+import { changed, sourcemaps, babel } from './plugins';
 
-module.exports = (src, dest) => {
+export default function compile(src, dest) {
   const stream = gulp.src(src)
     .pipe(changed(dest))
     .pipe(sourcemaps.init())
@@ -14,5 +14,3 @@ module.exports = (src, dest) => {
 
   return { stream, promise: streamToPromise(stream) };
 };
-
-

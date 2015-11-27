@@ -1,10 +1,10 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const gulp = require('gulp');
-const _ = require('lodash');
-const { spawn } = require('child_process');
-const { resolve } = require('path');
-const config = require('./lib/config');
-const test = require('./test');
+import gulp from 'gulp';
+import _ from 'lodash';
+import { spawn } from 'child_process';
+import { resolve } from 'path';
+import test from './test';
+import * as config from './lib/config';
 
 const node_modules = resolve(config.basePath, 'node_modules', '.bin'); // eslint-disable-line
 const istanbul = resolve(node_modules, 'istanbul');
@@ -20,7 +20,7 @@ const changeMochaOptions = () => {
   return () => config.mocha = originalMochaConfig;
 };
 
-const checkCoverage = () => {
+export function checkCoverage() {
   return new Promise((good, bad) => {
     const istanbulArgs = _.flatten(Object.keys(config.codeCoverage.thresholds).map((key) => {
       return [`--${key}`, config.codeCoverage.thresholds[key]];
@@ -33,7 +33,7 @@ const checkCoverage = () => {
 };
 
 
-const testCov = (type) => {
+export default function testCov(type = 'unit'){
   const revertMochaOptions = changeMochaOptions();
   return test(type)
     .finally(revertMochaOptions)
@@ -44,5 +44,3 @@ const defineTestCovTask = (name, type) => gulp.task(name, () => testCov(type));
 
 config.tests.types.map(type => defineTestCovTask(`test:${type}:cov`, type));
 defineTestCovTask('test:cov', 'all');
-
-module.exports = testCov;

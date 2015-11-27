@@ -1,8 +1,8 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const gulp = require('gulp');
-const config = require('./lib/config');
-const { negate } = require('./lib/helpers');
-const compile = require('./lib/compile');
+import gulp from 'gulp';
+import * as config from './lib/config';
+import { negate } from './lib/helpers';
+import compile from './lib/compile';
 
 gulp.task('default', ['build']);
 gulp.task('build', ['clean', 'build:js', 'copy:other']);

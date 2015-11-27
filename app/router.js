@@ -6,7 +6,7 @@ function filterPath(path) {
 
 const nextEventLoopTick = () => new Promise(good => setImmediate(good));
 
-function createRouter() {
+export function createRouter() {
   const routes = new Map();
   return {
     route(path, handler) {
@@ -24,5 +24,3 @@ function createRouter() {
     },
   };
 }
-
-module.exports = createRouter;

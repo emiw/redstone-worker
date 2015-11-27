@@ -1,9 +1,9 @@
-/* (c) 2015 EMIW, LLC. emiw.xyz/license */
-const gulp = require('gulp');
-const config = require('./lib/config');
-const { eslint } = require('./lib/plugins');
+/* (c) 2015 EMIW, LLC. emiw.   /license */
+import gulp from 'gulp';
+import * as config from './lib/config';
+import { eslint } from './lib/plugins';
 
-const lint = () => {
+export default function lint() {
   return gulp.src(config.srcJs.concat(config.lint.other))
     .pipe(eslint())
     .pipe(eslint.format())
@@ -11,5 +11,3 @@ const lint = () => {
 };
 
 gulp.task('lint', lint);
-
-module.exports = lint;

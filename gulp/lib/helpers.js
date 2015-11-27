@@ -6,20 +6,21 @@ const logErrorsHandler = (err) => {
   if (err.stack) console.error(err.stack);
 };
 
-module.exports.logErrors = stream => stream.on('error', logErrorsHandler);
+export const logErrors = stream => stream.on('error', logErrorsHandler);
 
-module.exports.negate = (paths) => {
-  if (!(paths instanceof Array)) paths = [paths];
+export function negate(paths) {
+  if (!Array.isArray(paths)) paths = [paths];
   return paths.map(path => `!${path}`);
 };
-module.exports.toDest = (paths) => {
-  if (!(paths instanceof Array)) paths = [paths];
+
+export function toDest(paths) {
+  if (!Array.isArray(paths)) paths = [paths];
   return paths.map(path => path.replace(src, dest));
 };
 
-module.exports.noop = () => {};
+export const noop = () => {};
 
-module.exports.streamToPromise = (stream) => {
+export function streamToPromise(stream) {
   let isDone = false;
   return new Promise((good, bad) => {
     stream.once('error', (err) => {
