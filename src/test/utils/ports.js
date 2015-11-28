@@ -1,23 +1,20 @@
-// This is still not ES6 imports because it's not transpiled yet.
-const getPort = require('portfinder').getPort;
-const net = require('net');
+import { getPort } from 'portfinder';
+import { createServer } from 'net';
 
 module.exports = {
   getPort: Promise.promisify(getPort),
 
-  portAvailable: function portAvailable(port) {
-    return new Promise(function promiseWrapper(good, bad) {
+  portAvailable(port) {
+    return new Promise((good, bad) => {
       const tester = net.createServer();
       tester
-        .once('error', function onError(err) {
+        .once('error', (err) => {
           if (err.code === 'EADDRINUSE') good(false);
           else bad(err);
         })
-        .once('listening', function onListening() {
+        .once('listening', () => {
           tester
-            .once('close', function onClose() {
-              good(true);
-            })
+            .once('close', () => good(true))
             .close();
         })
         .listen(port);

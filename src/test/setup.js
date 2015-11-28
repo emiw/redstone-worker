@@ -3,7 +3,7 @@
 /* global expect:false, assert:false */
 /* eslint no-var:0, prefer-const:0 */
 /* eslint-env mocha */
-var chai = require('chai');
+import chai from 'chai';
 
 require('babel/polyfill');
 require('source-map-support/register');
