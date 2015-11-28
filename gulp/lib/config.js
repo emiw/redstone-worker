@@ -4,9 +4,10 @@ import { resolve, join, basename } from 'path';
 export const basePath = resolve(__dirname, '..', '..');
 const pathInBase = (...paths) => resolve(basePath, ...paths);
 
-export const src = pathInBase('app');
+export const src = pathInBase('src');
 export const dest = pathInBase('build');
 export const spikes = pathInBase('spikes');
+export const test = pathInBase('test');
 
 export const srcJs = [join(src, '**', '*.js')];
 export const srcOther = [join(src, '**'), '!**/*.js'];
@@ -40,7 +41,7 @@ export const codeCoverage = {
 export const mocha = {
   // Because of child_process.spawn nonsense, we have to specify the option name and value as seperate strings.
   args: [
-    '--require', pathInBase('test', 'setup.js'),
+    '--require', join(test, 'setup.js'),
   ],
 
   files: tests.all,
