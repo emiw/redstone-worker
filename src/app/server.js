@@ -12,13 +12,14 @@ export async function start(port) {
   if (started) throw new Error('Server already started!');
   server = createServer();
   io = socketio(server);
-  await Promise.promisify(::server.listen)(port);
+  // This originally used the :: function bind operator, but it is unclear if that's still a thing.
+  await Promise.promisify(server.listen.bind(server))(port);
   started = true;
   return { io, server };
 }
 
 export async function stop() {
   if (!started) throw new Error('Server isn\'t started!');
-  await Promise.promisify(::server.close)();
+  await Promise.promisify(server.close.bind(server))();
   started = false;
 }
