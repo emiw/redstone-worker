@@ -6,7 +6,7 @@ module.exports = {
 
   portAvailable(port) {
     return new Promise((good, bad) => {
-      const tester = net.createServer();
+      const tester = createServer();
       tester
         .once('error', (err) => {
           if (err.code === 'EADDRINUSE') good(false);
