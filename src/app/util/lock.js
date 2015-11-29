@@ -3,15 +3,15 @@
 export default function createLock(errorMessage) {
   let locked = false;
 
-  function unlock() {
+  const unlock = () => {
     locked = false;
-  }
+  };
 
-  function lock() {
-    if (locked) throw new Error(errorMessage);
+  const lock = (msg = errorMessage) => {
+    if (locked) throw new Error(msg);
     locked = true;
     return unlock;
-  }
+  };
 
   return { lock, unlock };
 }
