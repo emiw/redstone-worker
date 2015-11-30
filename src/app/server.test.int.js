@@ -7,12 +7,8 @@ import { getPort, portAvailable } from 'test/utils/ports';
 describe('server', () => {
   const app = rewire('./server');
 
-  afterEach(async () => {
-    try {
-      await app.stop();
-    } catch (err) {
-      // do nothing
-    }
+  afterEach(() => {
+    return app.stop();
   });
 
   describe('#start', () => {

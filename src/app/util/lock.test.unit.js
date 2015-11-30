@@ -65,4 +65,22 @@ describe('util/lock', () => {
     unlock();
     expect(() => lock()).to.not.throw();
   });
+
+  it('#locked should be true if locked, false if otherwise', () => {
+    const lock = createLock('42');
+    expect(lock.locked).to.equal(false);
+    lock.lock();
+    expect(lock.locked).to.equal(true);
+    lock.unlock();
+    expect(lock.locked).to.equal(false);
+  });
+
+  it('#unlocked should be false if locked, true if otherwise', () => {
+    const lock = createLock('42');
+    expect(lock.unlocked).to.equal(true);
+    lock.lock();
+    expect(lock.unlocked).to.equal(false);
+    lock.unlock();
+    expect(lock.unlocked).to.equal(true);
+  });
 });

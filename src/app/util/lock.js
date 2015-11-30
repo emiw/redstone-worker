@@ -13,5 +13,14 @@ export default function createLock(errorMessage) {
     return unlock;
   };
 
-  return { lock, unlock };
+  return {
+    lock,
+    unlock,
+    get locked() {
+      return locked;
+    },
+    get unlocked() {
+      return !locked;
+    }
+  };
 }
