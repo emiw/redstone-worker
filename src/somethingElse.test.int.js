@@ -10,6 +10,6 @@ describe('somethingElse', () => {
   });
 
   it('should do something', () => {
-    expect(somethingElse).to.not.throw();
+    somethingElse();
   });
 });

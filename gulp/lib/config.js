@@ -63,12 +63,15 @@ config.istanbul = {
   args: [
     // These are only passed to `istanbul cover`. `cover _mocha --` is automatically inseted.
     '-x', '**/' + basename(config.tests.all),
+    '-x', join('**', 'gulp', '**'),
+    '-x', '**/gulpfile.js',
   ],
 };
 
 config.babel = {
   opts: {
     babelrc: basePath('.babelrc'),
+    sourceRoot: '/',
   },
 };
 
