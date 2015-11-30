@@ -1,7 +1,7 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
 import { createServer } from 'http';
 import socketio from 'socket.io';
-import createLock from './util/lock';
+import createLock from 'app/util/lock';
 
 // FIXME: Theoretically, since these are async functions, you could call stop,
 // then start, and cause problems.
