@@ -1,7 +1,5 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
 /* global expect:false, assert:false */
-/* eslint no-var:0, prefer-const:0 */
-/* eslint-env mocha */
 import '../setup';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
