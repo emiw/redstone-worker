@@ -8,8 +8,8 @@ let server;
 let started = false;
 const lock = createLock('Server is already stopping/starting!');
 export async function start(port) {
-  lock.lock();
   if (started) throw new Error('Server already started!');
+  lock.lock();
 
   server = createServer();
   io = socketio(server);
@@ -22,8 +22,8 @@ export async function start(port) {
 }
 
 export async function stop() {
-  lock.lock();
   if (!started) throw new Error('Server isn\'t started!');
+  lock.lock();
 
   await Promise.promisify(server.close.bind(server))();
 

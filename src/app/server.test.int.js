@@ -8,7 +8,7 @@ describe('server', () => {
   const app = rewire('./server');
 
   afterEach(() => {
-    return app.stop();
+    return app.stop().catch(() => {});
   });
 
   describe('#start', () => {
