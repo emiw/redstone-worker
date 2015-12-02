@@ -66,6 +66,7 @@ export const istanbul = {
   // Because of child_process.spawn nonsense, we have to specify the option name and value as seperate strings.
   args: [
     // These are only passed to `istanbul cover`. `cover _mocha --` is automatically inseted.
+    '--no-include-all-sources',
     '-x', join('**', basename(tests.all)),
     '-x', join(testUtilsDest, '**', '*'),
   ],
@@ -74,5 +75,6 @@ export const istanbul = {
 export const babel = {
   opts: {
     babelrc: pathInBase('.babelrc'),
+    sourceRoot: '/',
   },
 };
