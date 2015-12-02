@@ -62,6 +62,7 @@ config.istanbul = {
   // Because of child_process.spawn nonsense, we have to specify the option name and value as seperate strings.
   args: [
     // These are only passed to `istanbul cover`. `cover _mocha --` is automatically inseted.
+    '--no-include-all-sources',
     '-x', '**/' + basename(config.tests.all),
     '-x', join('**', 'gulp', '**'),
     '-x', '**/gulpfile.js',
