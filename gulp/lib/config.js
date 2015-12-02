@@ -75,6 +75,5 @@ export const istanbul = {
 export const babel = {
   opts: {
     babelrc: pathInBase('.babelrc'),
-    sourceRoot: '/',
   },
 };

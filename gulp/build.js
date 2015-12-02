@@ -9,7 +9,7 @@ gulp.task('default', ['build']);
 gulp.task('build', ['clean', 'build:js', 'copy:other']);
 gulp.task('build:js', ['clean'], () => {
   // This is an array of arrays.
-  const dontBuild = [config.tests.all, join(config.testUtilsSrc, '**', '*')].map(negate);
+  const dontBuild = [config.tests.all, config.testUtilsSrc, join(config.testUtilsSrc, '**', '*')].map(negate);
   return compile(config.srcJs.concat(...dontBuild), config.dest).stream;
 });
 
