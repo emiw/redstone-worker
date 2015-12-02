@@ -10,6 +10,6 @@ describe('index', () => {
   });
 
   it('should do something', () => {
-    expect(index).to.not.throw();
+    index();
   });
 });
