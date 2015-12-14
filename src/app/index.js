@@ -1,6 +1,6 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-import '../setup';
+require('../setup');
 
-export default function todo() {
-
-}
+module.exports = function todo() {
+  // TODO: NO ES6 is allowed here.
+};
