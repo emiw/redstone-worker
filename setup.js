@@ -1,6 +1,12 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
+/* eslint no-var: 0, prefer-const: 0 */
+var Promise = require('bluebird');
 require('babel/register');
-require('source-map-support/register');
+// require('source-map-support/register');
 require('app-module-path/register');
 
-global.Promise = global.Bluebird = require('bluebird');
+global.Promise = global.Bluebird = Promise;
+
+Promise.config({
+  warnings: false,
+});

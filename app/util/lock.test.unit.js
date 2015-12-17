@@ -1,86 +1,75 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-/* global expect:false, assert:false */
-/* eslint-env mocha */
+import test from 'ava';
 import createLock from './lock';
 
-describe('util/lock', () => {
-  it('should throw when locked twice', () => {
-    const lock = createLock('42');
-    const doLock = () => lock.lock();
-    expect(doLock).to.not.throw();
-    expect(doLock).to.throw();
+test.beforeEach(t => {
+  t.context = createLock('42');
+});
+
+test('throws when locked twice', t => {
+  const doLock = () => t.context.lock();
+  // We need `null` here, because the string is the reason, not the expected value
+  t.doesNotThrow(doLock, null, 'doesn\'t throw the first time you lock it');
+  t.throws(doLock, null, 'does throw the second time you lock it');
+});
+
+test('throws `errorMessage` when locked twice', t => {
+  const doLock = () => t.context.lock();
+  t.doesNotThrow(doLock, 'doesn\'t throw the first time you lock it');
+  t.throws(doLock, '42', 'throws the proper error message the second time');
+});
+
+test('if locked, unlocked, then locked, it shouldn\'t throw', t => {
+  t.doesNotThrow(() => {
+    t.context.lock();
+    t.context.unlock();
+    t.context.lock();
   });
+});
 
-  it('should throw `errorMessage` when locked twice', () => {
-    const errorMessage = '42';
-    const lock = createLock(errorMessage);
-    const doLock = () => lock.lock();
-    expect(doLock).to.not.throw();
-    expect(doLock).to.throw(errorMessage);
+test('should do nothing if unlocked twice', t => {
+  t.doesNotThrow(() => {
+    t.context.unlock();
+    t.context.unlock();
   });
+});
 
-  it('if locked, unlocked, then locked, it shouldn\'t throw', () => {
-    const lock = createLock('42');
-    expect(() => {
-      lock.lock();
-      lock.unlock();
-      lock.lock();
-    }).to.not.throw();
-  });
+test('should allow overriding of the error message with the parameter to `lock`', t => {
+  // Setup
+  t.context.lock();
 
-  it('should do nothing if unlocked twice', () => {
-    const lock = createLock('42');
-    expect(() => {
-      lock.unlock();
-      lock.unlock();
-    }).to.not.throw();
-  });
+  // The actual test
+  t.throws(::t.context.lock, '42');
+  t.throws(() => t.context.lock('6x9'), '6x9');
+});
 
-  it('should allow overriding of the error message with the parameter to `lock`', () => {
-    // Error messages
-    const defaultLockErrorMessage = 'This is the default error message for the lock';
-    const singleLockErrorMessage = 'This is the error message for just the individual lock command';
+test('#lock should return #unlock', t => {
+  const unlock = t.context.lock();
+  t.same(t.context.unlock, unlock, 'return value of #lock is #unlock');
+  unlock();
+  t.doesNotThrow(::t.context.lock, 'the returned function works properly');
+});
 
-    // Setup
-    const lock = createLock(defaultLockErrorMessage);
-    lock.lock();
+test('#lock and #unlock should not use `this`', t => {
+  const { lock, unlock } = t.context;
+  lock();
+  t.throws(lock, null, 'state is kept after locking without `this`'); // See above for `null` explanation
+  unlock();
+  t.doesNotThrow(lock, null, 'state is kept after unlocking without `this`');
+});
 
-    // The actual test
-    expect(() => lock.lock()).to.throw(defaultLockErrorMessage);
-    expect(() => lock.lock(singleLockErrorMessage)).to.throw(singleLockErrorMessage);
-  });
+test('#locked should be true if locked, false if otherwise', t => {
+  t.false(t.context.locked);
+  t.context.lock();
+  t.true(t.context.locked);
+  t.context.unlock();
+  t.false(t.context.locked);
+});
 
-  it('#lock should return #unlock', () => {
-    const lock = createLock('42');
-    const unlock = lock.lock();
-    expect(lock.unlock).to.eql(unlock);
-    unlock();
-    expect(() => lock.lock()).to.not.throw();
-  });
-
-  it('#lock and #unlock should not use `this`', () => {
-    const { lock, unlock } = createLock('42');
-    lock();
-    expect(() => lock()).to.throw();
-    unlock();
-    expect(() => lock()).to.not.throw();
-  });
-
-  it('#locked should be true if locked, false if otherwise', () => {
-    const lock = createLock('42');
-    expect(lock.locked).to.equal(false);
-    lock.lock();
-    expect(lock.locked).to.equal(true);
-    lock.unlock();
-    expect(lock.locked).to.equal(false);
-  });
-
-  it('#unlocked should be false if locked, true if otherwise', () => {
-    const lock = createLock('42');
-    expect(lock.unlocked).to.equal(true);
-    lock.lock();
-    expect(lock.unlocked).to.equal(false);
-    lock.unlock();
-    expect(lock.unlocked).to.equal(true);
-  });
+test('#unlocked should be false if locked, true if otherwise', t => {
+  t.true(t.context.unlocked);
+  t.context.lock();
+  t.false(t.context.unlocked);
+  t.context.unlock();
+  t.true(t.context.unlocked);
 });

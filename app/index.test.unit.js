@@ -1,15 +1,7 @@
 /* (c) 2015 EMIW, LLC. emiw.xyz/license */
-/* global expect:false, assert:false */
-/* eslint-env mocha */
-import rewire from 'rewire';
+import test from 'ava';
 
-describe('index', () => {
-  let index;
-  beforeEach(() => {
-    index = rewire('./index');
-  });
-
-  it('should do something', () => {
-    index();
-  });
+test(t => {
+  require('index')();
+  t.pass();
 });

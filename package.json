@@ -3,12 +3,15 @@
   "description": "The dispatcher for redstone",
   "main": "dist/index.js",
   "scripts": {
-    "test": "gulp test",
-    "test:cov": "gulp test:cov",
-    "build": "gulp build",
-    "watch": "gulp watch",
-    "lint": "gulp lint",
-    "travis": "gulp travis"
+    "pretest": "npm run lint",
+    "pretest:unit": "npm run lint",
+    "pretest:int": "npm run lint",
+    "test": "ava {app,test}/**/*.test.{unit,int}.js --require /Users/Ari/Developer/EMIW/redstone/dispatcher/setup.js",
+    "test:unit": "ava {app,test}/**/*.test.unit.js --require /Users/Ari/Developer/EMIW/redstone/dispatcher/setup.js",
+    "test:int": "ava {app,test}/**/*.test.int.js --require /Users/Ari/Developer/EMIW/redstone/dispatcher/setup.js",
+    "lint": "eslint .",
+    "watch": "echo \"TODO: Watch\"",
+    "travis": "echo \"TODO: Travis. Running `npm test` for now.\" && npm run test"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
     }
   ],
   "devDependencies": {
+    "ava": "0.8.0",
     "babel": "5.8.34",
     "babel-eslint": "4.1.6",
     "chai": "3.4.1",
@@ -41,9 +45,9 @@
     "gulp-eslint": "1.1.1",
     "gulp-sourcemaps": "1.6.0",
     "gulp-util": "3.0.7",
+    "istanbul": "1.0.0-alpha.2",
     "load-deps": "1.0.3",
     "mocha": "2.3.4",
-    "istanbul": "1.0.0-alpha.2",
     "portfinder": "0.4.0",
     "proxyquire": "1.7.3",
     "require-dir": "0.3.0",

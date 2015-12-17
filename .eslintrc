@@ -6,6 +6,12 @@
     "restParams": true // https://github.com/airbnb/javascript/pull/592
   },
   "rules": {
+    "id-length": [2, {"min": 2, "properties": "never", "exceptions": [
+      "t", // For tests
+      "$", // We don't use jQuery, but this isn't an unreasonable thing to call something.
+      "_", // Lodash
+      "e"  // Errors `catch (e) {`
+    ]}],
     "no-console": 0,
     "no-param-reassign": 0
   }
