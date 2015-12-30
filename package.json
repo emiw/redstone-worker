@@ -3,15 +3,21 @@
   "description": "The dispatcher for redstone",
   "main": "dist/index.js",
   "scripts": {
-    "pretest": "npm run lint",
-    "pretest:unit": "npm run lint",
-    "pretest:int": "npm run lint",
-    "test": "ava {app,test}/**/*.test.{unit,int}.js --require /Users/Ari/Developer/EMIW/redstone/dispatcher/setup.js",
-    "test:unit": "ava {app,test}/**/*.test.unit.js --require /Users/Ari/Developer/EMIW/redstone/dispatcher/setup.js",
-    "test:int": "ava {app,test}/**/*.test.int.js --require /Users/Ari/Developer/EMIW/redstone/dispatcher/setup.js",
     "lint": "eslint .",
     "watch": "echo \"TODO: Watch\"",
-    "travis": "echo \"TODO: Travis. Running `npm test` for now.\" && npm run test"
+    "travis": "echo \"TODO: Travis. Running `npm test` for now.\" && npm run test",
+    "pre_test": "npm run lint",
+    "_test": "ava --require ./setup.js --verbose \"{app,test}/**/*.test.$TEST_TYPE.js\"",
+    "test": "TEST_TYPE=\"{unit,int}\" npm run _test",
+    "test:unit": "TEST_TYPE=unit npm run _test",
+    "test:int": "TEST_TYPE=int npm run _test",
+    "post_cov": "npm run check-cov && npm run report",
+    "_cov": "nyc npm run $TYPE",
+    "test:cov": "TYPE=test npm run _cov",
+    "test:unit:cov": "TYPE=test:unit npm run _cov",
+    "test:int:cov": "TYPE=test:int npm run _cov",
+    "check-cov": "nyc check-coverage",
+    "report": "nyc report"
   },
   "repository": {
     "type": "git",
@@ -29,9 +35,8 @@
     }
   ],
   "devDependencies": {
-    "ava": "0.8.0",
-    "babel": "5.8.34",
-    "babel-eslint": "4.1.6",
+    "ava": "0.9.1",
+    "babel-preset-features": "2.0.2",
     "chai": "3.4.1",
     "chai-as-promised": "5.1.0",
     "coveralls": "2.11.4",
@@ -48,6 +53,7 @@
     "istanbul": "1.0.0-alpha.2",
     "load-deps": "1.0.3",
     "mocha": "2.3.4",
+    "nyc": "^5.0.1",
     "portfinder": "0.4.0",
     "proxyquire": "1.7.3",
     "require-dir": "0.3.0",
@@ -60,8 +66,9 @@
   "homepage": "https://github.com/emiw/redstone-dispatcher#readme",
   "dependencies": {
     "app-module-path": "1.0.5",
-    "babel": "5.8.34",
-    "babel-polyfill": "6.2.0",
+    "babel-core": "6.3.26",
+    "babel-polyfill": "6.3.14",
+    "babel-preset-stage-0": "6.3.13",
     "bluebird": "3.0.5",
     "socket.io": "1.3.7",
     "source-map-support": "0.3.3"

@@ -2,6 +2,6 @@
 import test from 'ava';
 
 test(t => {
-  require('index')();
+  require('./index')();
   t.pass();
 });

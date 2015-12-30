@@ -1,4 +1,3 @@
 {
-  "stage": 0,
-  "sourceRoot": "/"
+  "presets": ["features", "stage-0"]
 }
