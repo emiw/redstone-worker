@@ -21,6 +21,6 @@ export default function createLock(errorMessage) {
     },
     get unlocked() {
       return !locked;
-    }
+    },
   };
 }
