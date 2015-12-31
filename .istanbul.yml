@@ -1,3 +1,7 @@
+reporting:
+    print: summary
+    reports:
+        - lcov
 check:
     global:
         statements: 90

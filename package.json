@@ -5,19 +5,19 @@
   "scripts": {
     "lint": "eslint .",
     "watch": "echo \"TODO: Watch\"",
-    "travis": "echo \"TODO: Travis. Running `npm test` for now.\" && npm run test",
     "pre_test": "npm run lint",
     "_test": "ava --require ./setup.js --verbose \"{app,test}/**/*.test.$TEST_TYPE.js\"",
     "test": "TEST_TYPE=\"{unit,int}\" npm run _test",
     "test:unit": "TEST_TYPE=unit npm run _test",
     "test:int": "TEST_TYPE=int npm run _test",
-    "post_cov": "npm run check-cov && npm run report",
+    "post_cov": "npm run check-cov",
     "_cov": "nyc npm run $TYPE",
     "test:cov": "TYPE=test npm run _cov",
     "test:unit:cov": "TYPE=test:unit npm run _cov",
     "test:int:cov": "TYPE=test:int npm run _cov",
     "check-cov": "nyc check-coverage",
-    "report": "nyc report"
+    "report": "nyc report",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
