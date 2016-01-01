@@ -10,7 +10,9 @@
       "t", // For tests
       "$", // We don't use jQuery, but this isn't an unreasonable thing to call something.
       "_", // Lodash
-      "e"  // Errors `catch (e) {`
+      "e", // Errors `catch (e) {`
+      "i", // Loops
+      "j"  // Loops
     ]}],
     "no-console": 0,
     "no-param-reassign": 0
