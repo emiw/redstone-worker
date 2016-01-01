@@ -15,9 +15,11 @@ export default function createParser() {
       chunk = parts.pop(); // Whatever's left over
 
       parts.forEach((part) => {
-        ee.emit('packet', dec(part + ';'));
+        const result = dec(part + ';');
+        ee.emit('fullPacket', result); // TODO: This name is terrible
+        if (result.packet) ee.emit('packet', result.packet);
+        if (result.ctrl) ee.emit('ctrl', result.ctrl);
       });
-
     },
   };
 }

@@ -15,8 +15,11 @@ test.cb('whole packets', ({ context: parser, ...t}) => {
   const emitPacket = () => parser.addChunk(enc(ctrls[0], new Buffer(packets[0])));
 
   parser.on('packet', (packet) => {
-    t.is(packet.packet.toString('utf8'), packets.shift(), 'packet matches');
-    t.same(packet.ctrl, ctrls.shift(), 'ctrl matches');
+    t.is(packet.toString('utf8'), packets.shift(), 'packet matches');
+  });
+
+  parser.on('ctrl', (ctrl) => {
+    t.same(ctrl, ctrls.shift(), 'ctrl matches');
   });
 
   emitPacket();
@@ -29,8 +32,11 @@ test.cb('partial packets', ({ context: parser, ...t}) => {
   const packets = ['foo', 'bar', 'baz'];
 
   parser.on('packet', (packet) => {
-    t.is(packet.packet.toString('utf8'), packets.shift(), 'packet matches');
-    t.same(packet.ctrl, ctrls.shift(), 'ctrl matches');
+    t.is(packet.toString('utf8'), packets.shift(), 'packet matches');
+  });
+
+  parser.on('ctrl', (ctrl) => {
+    t.same(ctrl, ctrls.shift(), 'ctrl matches');
   });
 
   const combinedStr = packets.reduce((str, packet, i) => {
@@ -38,4 +44,20 @@ test.cb('partial packets', ({ context: parser, ...t}) => {
   }, '');
 
   splitByLength(combinedStr, 10).forEach(parser.addChunk);
+});
+
+test.cb('`fullPacket` event', ({ context: parser, ...t}) => {
+  t.plan(2);
+  const ctrls = [{ foo: 'bar' }, { baz: [1, 'qux'] }, { quux: [1, 2, 3] }];
+  const packets = ['foo', 'bar', 'baz'];
+  const emitPacket = () => parser.addChunk(enc(ctrls[0], new Buffer(packets[0])));
+
+  parser.on('fullPacket', (packet) => {
+    t.is(packet.packet.toString('utf8'), packets.shift(), 'packet matches');
+    t.same(packet.ctrl, ctrls.shift(), 'ctrl matches');
+  });
+
+  emitPacket();
+  emitPacket();
+  emitPacket();
 });
