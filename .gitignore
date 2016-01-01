@@ -1,5 +1,6 @@
 # Created by https://www.gitignore.io/api/intellij,webstorm,node,linux,osx,sublimetext,textmate,windows,vim,emacs
 
+TODO.txt
 .nyc_output
 
 ### Intellij ###
