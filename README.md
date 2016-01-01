@@ -1,7 +1,7 @@
-# Redstone dispatcher
+# Redstone Worker
 ---
 
-### The Dispatcher for Redstone
+### The Worker for Redstone
 
 [//]: # "ProTip(tm): This is how you make a comment in markdown. Anything between the quotes is ignored."
 
@@ -9,22 +9,22 @@
 [![Version][version-badge]][version-link]
 [![Build Status][build-badge]][build-link]
 [![Coverage Status][coverage-badge]][coverage-link]
-[![Dependency Status][deps-badge]](deps-link)
+[![Dependency Status][deps-badge]][deps-link]
 [![devDependency Status][devDeps-badge]][devDeps-link]
 
-[build-badge]: https://travis-ci.org/emiw/redstone-dispatcher.svg                  "Travis CI Build Status"
-[build-link]: https://travis-ci.org/emiw/redstone-dispatcher                       "Travis CI Build Status"
+[build-badge]: https://travis-ci.org/emiw/redstone-worker.svg                  "Travis CI Build Status"
+[build-link]: https://travis-ci.org/emiw/redstone-worker                       "Travis CI Build Status"
 
-[deps-badge]: https://david-dm.org/emiw/redstone-dispatcher.svg                    "Dependency Status"
-[deps-link]: https://david-dm.org/emiw/redstone-dispatcher                         "Dependency Status"
+[deps-badge]: https://david-dm.org/emiw/redstone-worker.svg                    "Dependency Status"
+[deps-link]: https://david-dm.org/emiw/redstone-worker                         "Dependency Status"
 
-[devDeps-badge]: https://david-dm.org/emiw/redstone-dispatcher/dev-status.svg      "devDependency Status"
-[devDeps-link]: https://david-dm.org/emiw/redstone-dispatcher#info=devDependencies "devDependency Status"
+[devDeps-badge]: https://david-dm.org/emiw/redstone-worker/dev-status.svg      "devDependency Status"
+[devDeps-link]: https://david-dm.org/emiw/redstone-worker#info=devDependencies "devDependency Status"
 
 [//]: # "This comes last, as it's really long"
 
-[coverage-badge]: https://coveralls.io/repos/emiw/redstone-dispatcher/badge.svg?branch=master&service=github "Code Coverage"
-[coverage-link]: https://coveralls.io/github/emiw/redstone-dispatcher?branch=master                          "Code Coverage"
+[coverage-badge]: https://coveralls.io/repos/emiw/redstone-worker/badge.svg?branch=master&service=github "Code Coverage"
+[coverage-link]: https://coveralls.io/github/emiw/redstone-worker?branch=master                          "Code Coverage"
 
 
 ---
