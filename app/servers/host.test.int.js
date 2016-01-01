@@ -4,7 +4,7 @@ import rewire from 'rewire';
 import { getPort, portAvailable } from 'test/utils/ports';
 
 test.beforeEach(t => {
-  t.context.app = rewire('./app');
+  t.context.app = rewire('./host');
 });
 
 test.afterEach(t => {
