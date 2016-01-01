@@ -1,4 +1,4 @@
-/* (c) 2015 EMIW, LLC. emiw.xyz/license */
+/* (c) 2015-2016 EMIW, LLC. emiw.xyz/license */
 
 export default function createLock(errorMessage) {
   let locked = false;

@@ -1,4 +1,4 @@
-/* (c) 2016 Ari Porad (@ariporad) <http://ariporad.com>. License: ariporad.mit-license.org */
+/* (c) 2015-2016 EMIW, LLC. emiw.xyz/license */
 
 // http://stackoverflow.com/a/10915724/1928484
 export function splitByLength(str, len) {

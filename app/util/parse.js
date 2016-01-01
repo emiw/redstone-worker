@@ -1,4 +1,4 @@
-/* (c) 2015 EMIW, LLC. emiw.xyz/license */
+/* (c) 2015-2016 EMIW, LLC. emiw.xyz/license */
 
 // WARNING: The terminology in this file is very loosely defined.
 // TODO: Fix terminology.

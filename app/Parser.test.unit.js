@@ -1,4 +1,4 @@
-/* (c) 2016 Ari Porad (@ariporad) <http://ariporad.com>. License: ariporad.mit-license.org */
+/* (c) 2015-2016 EMIW, LLC. emiw.xyz/license */
 import test from 'ava';
 import { enc } from 'app/util/parse';
 import { splitByLength } from 'app/util/utils';
