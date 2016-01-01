@@ -16,7 +16,7 @@
     "test:unit:cov": "TYPE=test:unit npm run _cov",
     "test:int:cov": "TYPE=test:int npm run _cov",
     "check-cov": "nyc check-coverage",
-    "report": "nyc report",
+    "report": "nyc report --reporter=lcov",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
