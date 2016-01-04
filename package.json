@@ -1,6 +1,6 @@
 { "name": "@emiw/redstone-worker"
 , "description": "worker dispatcher for redstone"
-, "main": "dist/index.js"
+, "main": "index.js"
 , "scripts":
   { "lint": "eslint ."
   , "watch": "echo \"TODO: Watch\""
