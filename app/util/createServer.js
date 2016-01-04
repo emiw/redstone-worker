@@ -2,7 +2,7 @@
 import net from 'net';
 import createLock from 'app/util/lock';
 
-export default function createServer(handler = () => {}) {
+export default function createServer(handler) {
   let server;
   let started = false;
   const lock = createLock('Server is already stopping/starting!');

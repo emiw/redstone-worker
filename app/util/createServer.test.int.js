@@ -83,3 +83,23 @@ test('#stop should throw if called twice', async ({ context: ctx, ...t }) => {
   t.throws(server.stop(), /start/);
   await cleanup(server);
 });
+
+/**
+ * Properties
+ */
+test('#started', async ({ context: ctx, ...t }) => {
+  const server = createServer(noop);
+  t.is(server.started, false);
+  await server.start(ctx.port);
+  t.is(server.started, true);
+  await server.stop();
+  t.is(server.started, false);
+  await cleanup(server);
+});
+
+test('#server', async ({ context: ctx, ...t }) => {
+  const server = createServer(noop);
+  await server.start(ctx.port);
+  t.is(server.server.address().port, ctx.port);
+  await cleanup(server);
+});
