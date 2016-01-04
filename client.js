@@ -38,33 +38,36 @@ redstone.connect(3000, '127.0.0.1', () => {
   console.log('Connected');
 });
 
-redstone.on('data', (data) => {
-  //console.log('Received: ' + data);
-  parser.addChunk(data);
-});
-
 redstone.on('close', function() {
   console.log('Connection closed');
   process.exit();
+});
+
+redstone.on('data', (data) => {
+  //console.log('Received: ' + data);
+  parser.addChunk(data);
 });
 
 parser.on('packet', packet => {
   if (minecraft) minecraft.write(packet)
 });
 
-
 parser.on('ctrl', (ctrl) => {
   if (ctrl.state !== state) {
     state = ctrl.state;
-    switch(ctrl.state) {
+    switch (ctrl.state) {
       case 1:
         // Connected to server
         break;
       case 2:
         // Friend joined.
-        connectToMinecraft().then(() => {
-          minecraft.on('data', data => redstoneWrite(null, data));
-        });
+        var prom = connectToMinecraft();
+        setTimeout(() => {
+          console.log('delay done');
+          prom.then(() => {
+            minecraft.on('data', data => setTimeout(() => redstoneWrite(null, data), 500));
+          });
+        }, 2000);
         break;
       default:
         throw new Error(`Unexpected State ${state}!`);
