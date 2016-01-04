@@ -3,7 +3,6 @@
 var Promise = require('bluebird');
 require('babel-core/register');
 require('babel-polyfill');
-// require('source-map-support/register');
 require('app-module-path/register');
 
 global.Promise = global.Bluebird = Promise;
