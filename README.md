@@ -6,11 +6,12 @@
 [//]: # "ProTip(tm): This is how you make a comment in markdown. Anything between the quotes is ignored."
 
 ---
-[![Version][version-badge]][version-link]
 [![Build Status][build-badge]][build-link]
 [![Coverage Status][coverage-badge]][coverage-link]
 [![Dependency Status][deps-badge]][deps-link]
 [![devDependency Status][devDeps-badge]][devDeps-link]
+[![Commitizen friendly][commitizen-badge]][commitizen-link]
+
 
 [build-badge]: https://travis-ci.org/emiw/redstone-worker.svg                  "Travis CI Build Status"
 [build-link]: https://travis-ci.org/emiw/redstone-worker                       "Travis CI Build Status"
@@ -20,6 +21,9 @@
 
 [devDeps-badge]: https://david-dm.org/emiw/redstone-worker/dev-status.svg      "devDependency Status"
 [devDeps-link]: https://david-dm.org/emiw/redstone-worker#info=devDependencies "devDependency Status"
+
+[commitizen-badge]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg "Commitizen Friendly"
+[commitizen-link]: http://commitizen.github.io/cz-cli/                               "Commitizen Friendly"
 
 [//]: # "This comes last, as it's really long"
 
