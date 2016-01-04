@@ -17,7 +17,6 @@ export default function createParser() {
       parts.forEach((part) => {
         ee.emit('packet', dec(part + ';'));
       });
-
     },
   };
 }
