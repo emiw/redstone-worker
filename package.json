@@ -62,6 +62,7 @@
   , "babel-core": "6.3.26"
   , "babel-polyfill": "6.3.14"
   , "bluebird": "3.0.5"
+  , "varint": "^4.0.0"
   }
 , "config":
   { "commitizen":
