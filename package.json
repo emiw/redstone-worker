@@ -17,7 +17,7 @@
   , "check-cov": "nyc check-coverage"
   , "report": "nyc report --reporter=lcov"
   , "coveralls": "nyc report --reporter=text-lcov | coveralls"
-  , "format-package": "format-json package.json | sponge package.json"
+  , "format-package": "format-json package.json | sponge package.json && git add package.json"
   , "precommit": "npm run format-package && npm run test"
   }
 , "repository":
@@ -63,6 +63,7 @@
   , "babel-core": "6.3.26"
   , "babel-polyfill": "6.3.14"
   , "bluebird": "3.0.5"
+  , "redux": "3.0.5"
   , "varint": "4.0.0"
   }
 , "config":
